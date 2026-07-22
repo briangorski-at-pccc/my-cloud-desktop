@@ -1,0 +1,40 @@
+services:
+  workspace:
+    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
+    command: sleep infinity
+    volumes:
+      - ..:/workspaces/my-cloud-desktop:cached
+      - activity-log:/activity
+
+  desktop:
+    build:
+      context: .
+      dockerfile: Desktop.Dockerfile
+    network_mode: service:workspace
+    depends_on:
+      - workspace
+    restart: unless-stopped
+    shm_size: "1gb"
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: America/New_York
+      TITLE: Brian's Cloud Desktop
+      PIXELFLUX_WAYLAND: "false"
+      SELKIES_USE_CPU: "true|locked"
+      SELKIES_ENCODER: "jpeg"
+      SELKIES_FRAMERATE: "8-30"
+      SELKIES_AUDIO_ENABLED: "true"
+      SELKIES_MICROPHONE_ENABLED: "false|locked"
+      SELKIES_ENABLE_SHARING: "false|locked"
+      SELKIES_ENABLE_COLLAB: "false|locked"
+      SELKIES_ENABLE_SHARED: "false|locked"
+      SELKIES_UI_TITLE: Brian's Cloud Desktop
+      START_DOCKER: "false"
+    volumes:
+      - desktop-home:/config
+      - activity-log:/activity
+
+volumes:
+  desktop-home:
+  activity-log:
