@@ -1,0 +1,39 @@
+{
+  "name": "Brian's Browser Desktop",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "runServices": [
+    "workspace",
+    "desktop"
+  ],
+  "workspaceFolder": "/workspaces/my-cloud-desktop",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [
+    3000
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Open Cloud Desktop",
+      "onAutoForward": "openBrowserOnce",
+      "protocol": "http",
+      "visibility": "private"
+    }
+  },
+  "otherPortsAttributes": {
+    "onAutoForward": "ignore"
+  },
+  "postAttachCommand": "bash .devcontainer/activity-monitor.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "files.autoSave": "afterDelay",
+        "remote.autoForwardPortsSource": "hybrid"
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "START-HERE.md"
+      ]
+    }
+  }
+}
