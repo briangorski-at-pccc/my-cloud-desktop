@@ -1,20 +1,6 @@
 services:
-  workspace:
-    image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
-    command: sleep infinity
-    expose:
-      - "3000"
-    volumes:
-      - ..:/workspaces/my-cloud-desktop:cached
-      - activity-log:/activity
-
   desktop:
-    build:
-      context: .
-      dockerfile: Desktop.Dockerfile
-    network_mode: service:workspace
-    depends_on:
-      - workspace
+    image: lscr.io/linuxserver/webtop:ubuntu-xfce
     restart: unless-stopped
     shm_size: "1gb"
     environment:
@@ -31,12 +17,10 @@ services:
       SELKIES_ENABLE_SHARING: "false|locked"
       SELKIES_ENABLE_COLLAB: "false|locked"
       SELKIES_ENABLE_SHARED: "false|locked"
-      SELKIES_UI_TITLE: Brian's Cloud Desktop
       START_DOCKER: "false"
     volumes:
+      - ..:/workspaces/my-cloud-desktop:cached
       - desktop-home:/config
-      - activity-log:/activity
 
 volumes:
   desktop-home:
-  activity-log:
