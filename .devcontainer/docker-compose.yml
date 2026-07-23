@@ -2,8 +2,8 @@ services:
   workspace:
     image: mcr.microsoft.com/devcontainers/base:ubuntu-24.04
     command: sleep infinity
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     volumes:
       - ..:/workspaces/my-cloud-desktop:cached
       - activity-log:/activity
