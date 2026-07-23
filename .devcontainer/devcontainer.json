@@ -1,22 +1,20 @@
 {
   "name": "Brian's Browser Desktop",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "workspace",
+  "service": "desktop",
   "runServices": [
-    "workspace",
     "desktop"
   ],
   "workspaceFolder": "/workspaces/my-cloud-desktop",
   "shutdownAction": "stopCompose",
+  "overrideCommand": false,
   "forwardPorts": [
     3000
   ],
   "portsAttributes": {
     "3000": {
       "label": "Open Cloud Desktop",
-      "onAutoForward": "notify",
-      "protocol": "http",
-      "visibility": "private"
+      "onAutoForward": "openBrowserOnce"
     }
   },
   "customizations": {
