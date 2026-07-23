@@ -14,20 +14,15 @@
   "portsAttributes": {
     "3000": {
       "label": "Open Cloud Desktop",
-      "onAutoForward": "openBrowserOnce",
+      "onAutoForward": "notify",
       "protocol": "http",
       "visibility": "private"
     }
   },
-  "otherPortsAttributes": {
-    "onAutoForward": "ignore"
-  },
-  "postAttachCommand": "bash .devcontainer/activity-monitor.sh",
   "customizations": {
     "vscode": {
       "settings": {
-        "files.autoSave": "afterDelay",
-        "remote.autoForwardPortsSource": "hybrid"
+        "files.autoSave": "afterDelay"
       }
     },
     "codespaces": {
