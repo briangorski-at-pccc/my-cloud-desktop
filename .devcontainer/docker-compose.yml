@@ -3,6 +3,8 @@ services:
     image: lscr.io/linuxserver/webtop:ubuntu-xfce
     restart: unless-stopped
     shm_size: "1gb"
+    ports:
+      - "3000"
     environment:
       PUID: "1000"
       PGID: "1000"
